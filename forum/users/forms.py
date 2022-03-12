@@ -27,9 +27,8 @@ class LoginForm(forms.Form):
         if user is not None:
             self.user = user
             return self.cleaned_data
-        time.sleep(3)
-        self.add_error("username", "invalid username.")
-        self.add_error("password", "or invalid password.")
+        time.sleep(0)
+        self.add_error("username", "неправильное имя пользователя или пароль")
         raise forms.ValidationError("User not found!")
 
     def auth(self, request):
