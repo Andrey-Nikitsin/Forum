@@ -1,4 +1,4 @@
-  {% load static %}
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,23 +12,55 @@
     <title>Document</title>
 </head>
 <body>
-    {% block header %}
-    {% include "blocks/header.html" %}
-    {% endblock header %}
+<header class="header">
+        <div class="container">
+            <div class="header__upper-box">
+                <div class="header__discription">
+                    <h1 class="header__title">Forum</h1>
+                    <p class="header__text">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eos, esse iste? Quam, corrupti deserunt? Suscipit quia quibusdam inventore minus velit?</p>
+                </div>
+                <div class="header__account">
+                    <ul class="header__account-list">
+                        <li class="header__account-item"><a class="header__account-link" href="">Enter</a></li>
+                        <li class="header__account-item"><a class="header__account-link" href="">Registration</a></li>
+                        <li class="header__account-item"><a class="header__account-link" href="">Restore record</a></li>
+                    </ul>
+                </div>
+            </div>
+            <nav class="header__nav">
+                <ul class="header__nav-link">
+                    <li class="header__nav-item"><a class="header__nav-link" href="">Menu item</a></li>
+                    <li class="header__nav-item"><a class="header__nav-link" href="">Menu item</a></li>
+                    <li class="header__nav-item"><a class="header__nav-link" href="">Menu item</a></li>
+                    <li class="header__nav-item"><a class="header__nav-link" href="">Menu item</a></li>
+                    <li class="header__nav-item"><a class="header__nav-link" href="">Menu item</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
     {% if user.is_authenticated %}
     <a href="{% url 'logout_page' %}">{{user.username}}</a>
     {% else %}
-    <a href="{% url 'user_login' %}">Login</a>
+    <a href="{% url 'user_login' %}">Вход</a>
+    <a href="{% url 'register_user' %}">Регистрация</a> 
     {% endif %}
+    {% comment %} {% block header %}
+    {% include "blocks/header.html" %}
+    {% endblock header %} {% endcomment %}
 
     <div class="content">
         {% block user %}{% endblock user %}
         {% block post %}{% endblock post %}
     </div>
 
-    <div class="footer">
-        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Iure fuga dicta repudiandae mollitia, praesentium vero voluptas veritatis animi nisi ullam omnis deleniti ducimus soluta magni, aliquam ipsam dolores, odio harum.</p>
-    </div>
+    <footer class="footer">
+        <div class="container">
+            <div class="footer__box">
+                <p>This is my first  forum :)</p>
+                <div>&#169 Andrey Nikitsin</div>
+            </div>
+        </div>
+    </footer>
 
 </body>
 </html>

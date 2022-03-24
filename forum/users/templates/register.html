@@ -2,13 +2,51 @@
 {% load static %}
 
 {% block user %}
-<form action="{% url 'register_user' %}" method="post">
-    {% csrf_token %}
-    {{form}}
-    <input type="submit" value="Login">
-</form>
+<section>
+        <div class="container" >
+            <div class="reg">
+                <div class="reg__form-box">
+                    <h2 class="reg__form-title">Регистрация</h2>
+                    <form class="reg__form" action="{% url 'register_user' %}" method="post">
+                        {% csrf_token %}
+                            <div class="reg__form-input">
+                            {{form.username}}
+                            <label for="">
+                            {{form.username.label}}
+                            </label>
+                            </div>
+                            <div class="reg__form-input">
+                            {{form.phone}}
+                            <label for="">
+                            {{form.phone.label}}
+                            </label>
+                            </div>
+                            <div class="reg__form-input">
+                            {{form.email}}
+                            <label for="">
+                            {{form.email.label}}
+                            </label>
+                            </div>
+                            <div class="reg__form-input">
+                            {{form.password}}
+                            <label for="">
+                            {{form.password.label}}
+                            </label>
+                            </div>
+                            <div class="reg__form-input">
+                            {{form.password_repeat}}
+                            <label for="">
+                            {{form.password_repeat.label}}
+                            </label>
+                            </div>
+                        <input class="reg__form-but" type="submit" value="Login">
+                    </form>
+                </div>
+            </div>
+        </div>
+</section>
 {% endblock user %}
 
 {% block style %}
-<link rel="stylesheet" href="{% static 'css/login.css' %}">
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
 {% endblock style %}

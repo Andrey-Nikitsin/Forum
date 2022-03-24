@@ -3,12 +3,15 @@
 }
 
 body {
+    display: flex;
     font-family: Raleway, Arial, Helvetica, sans-serif;
     font-size: 18px;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .header {
-    background-color: rgb(89, 89, 89);
+    background-color: rgb(11, 39, 129);
     color: rgb(255, 255, 255);
 }
 
@@ -56,7 +59,7 @@ body {
 .reg__form-box {
     margin: 20px 30%;
     border-radius: 10px;
-    background-color: rgb(89, 89, 89);
+    background-color:rgb(11, 39, 129);
 }
 
 .reg__form-title {
@@ -76,7 +79,7 @@ body {
     border: none;
     border-bottom: 1px solid rgb(255, 255, 255);
     margin-bottom: 20px;
-    background-color: rgb(89, 89, 89);
+    background-color:rgb(11, 39, 129);
     width: 90%;
     margin-left: 10px;
     margin-right: 10px;
@@ -90,11 +93,12 @@ body {
 
 .reg__form-input:hover,
 .reg__form-input:active {
-    background-color: rgb(89, 89, 89);
+    background-color:rgb(11, 39, 129);
     outline: none;
 }
 
 .reg__form-but {
+    display: block;
     width: 100%;
     border-radius: 10px;
     background-color: rgb(4, 72, 197);
@@ -106,8 +110,16 @@ body {
     padding: 15px;
 }
 
+.reg__form-but:active {
+    background-color: green;
+}
+
+.reg__form-but:hover {
+    background-color: hotpink;
+}
+
 .footer {
-    background-color: rgb(89, 89, 89);
+    background-color: rgb(11, 39, 129);
     color: white;
 }
 

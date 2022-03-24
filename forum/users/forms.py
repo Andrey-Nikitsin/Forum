@@ -40,7 +40,6 @@ class RegisterForm(forms.ModelForm):
         widget=forms.PasswordInput(
             attrs={
                 "class": "input",
-                "placeholder": "Password",
             }
         )
     )
