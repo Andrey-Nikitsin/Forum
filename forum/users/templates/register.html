@@ -10,6 +10,7 @@
                     <form class="reg__form" action="{% url 'register_user' %}" method="post">
                         {% csrf_token %}
                             <div class="reg__form-input">
+                            {{form.errors}}
                             {{form.username}}
                             <label for="">
                             {{form.username.label}}

@@ -28,7 +28,7 @@ class LoginForm(forms.Form):
             self.user = user
             return self.cleaned_data
         time.sleep(0)
-        self.add_error("username", "неправильное имя пользователя или пароль")
+        self.add_error("username", "неверное имя пользователя или пароль")
         raise forms.ValidationError("User not found!")
 
     def auth(self, request):
@@ -40,17 +40,39 @@ class RegisterForm(forms.ModelForm):
         widget=forms.PasswordInput(
             attrs={
                 "class": "input",
+                "placeholder": "Password repeat",
             }
         )
     )
     
+    # def clean(self):
+    #     self.add_error("username", "неверное имя пользователя или пароль")
+    #     print(self.cleaned_data)
+
     class Meta:
         model = User
         fields = ("username", "phone", "email", "password")
         widgets = {
             "password": forms.PasswordInput(
                 attrs={
-                    "class": "input"
+                    "class": "input",
+                    "placeholder": "Password",
                 }
-            )
+                ),
+                "username" : forms.TextInput(
+                    attrs={
+                        "placeholder": "Username"
+                }
+                ),
+                "phone" : forms.TextInput(
+                    attrs={
+                        "placeholder": "Phone"
+                }
+                ),
+                "email" : forms.TextInput(
+                    attrs={
+                        "placeholder": "Email"
+                }
+                ),
+
         }

@@ -24,7 +24,7 @@
                     <h2 class="reg__form-title">Вход</h2>
                     <form class="reg__form" action="{% url 'user_login' %}" method="post">
                         {% if login_form.non_field_errors %}
-                        {{ login_form.non_field_errors }}
+                        {% comment %} {{ login_form.non_field_errors }} {% endcomment %}
                         {% endif %}
                         {% csrf_token %}
                         <div class="reg__form-input">
