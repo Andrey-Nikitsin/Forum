@@ -1,7 +1,10 @@
+from cProfile import label
+from logging import PlaceHolder
 import time
 from django import forms
 from django.contrib.auth import login, authenticate
 from users.models import User
+from django.contrib.auth.forms import UserCreationForm
 
 
 class LoginForm(forms.Form):
@@ -27,7 +30,7 @@ class LoginForm(forms.Form):
         if user is not None:
             self.user = user
             return self.cleaned_data
-        time.sleep(0)
+        time.sleep(1)
         self.add_error("username", "неверное имя пользователя или пароль")
         raise forms.ValidationError("User not found!")
 
@@ -35,25 +38,14 @@ class LoginForm(forms.Form):
         login(request, self.user)
 
 
-class RegisterForm(forms.ModelForm):
-    password_repeat = forms.CharField(
-        widget=forms.PasswordInput(
-            attrs={
-                "class": "input",
-                "placeholder": "Password repeat",
-            }
-        )
-    )
-    
-    # def clean(self):
-    #     self.add_error("username", "неверное имя пользователя или пароль")
-    #     print(self.cleaned_data)
-
+class RegisterForm(UserCreationForm):
+    password1 = forms.CharField(label='Пароль', widget=forms.PasswordInput(attrs={'placeholder': 'Password'}))
+    password2 = forms.CharField(label='Подтверждение пароля', widget=forms.PasswordInput(attrs={'placeholder': 'Password repeat'}))
     class Meta:
         model = User
-        fields = ("username", "phone", "email", "password")
+        fields = ("username", "phone", "email", "password1", "password2")
         widgets = {
-            "password": forms.PasswordInput(
+            "password1": forms.PasswordInput(
                 attrs={
                     "class": "input",
                     "placeholder": "Password",
