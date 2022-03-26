@@ -11,7 +11,7 @@ class LoginForm(forms.Form):
     username = forms.CharField(
         widget=forms.TextInput(
             attrs={
-                "class": "input",
+                "class": "reg__form-input",
                 "placeholder": "Username",
             }
         )
@@ -19,7 +19,7 @@ class LoginForm(forms.Form):
     password = forms.CharField(
         widget=forms.PasswordInput(
             attrs={
-                "class": "input",
+                "class": "reg__form-input",
                 "placeholder": "Password",
             }
         )
@@ -39,30 +39,35 @@ class LoginForm(forms.Form):
 
 
 class RegisterForm(UserCreationForm):
-    password1 = forms.CharField(label='Пароль', widget=forms.PasswordInput(attrs={'placeholder': 'Password'}))
-    password2 = forms.CharField(label='Подтверждение пароля', widget=forms.PasswordInput(attrs={'placeholder': 'Password repeat'}))
+    password1 = forms.CharField(label='Пароль', widget=forms.PasswordInput(attrs={'placeholder': 'Password', 'class': 'reg__form-input'}))
+    password2 = forms.CharField(label='Подтверждение пароля', widget=forms.PasswordInput(attrs={'placeholder': 'Password repeat', 'class': 'reg__form-input'}))
+    phone = forms.CharField(label='Номер телефона', widget=forms.TextInput(attrs={'placeholder': 'Phone', 'class': 'reg__form-input'}))
+    
     class Meta:
         model = User
         fields = ("username", "phone", "email", "password1", "password2")
         widgets = {
             "password1": forms.PasswordInput(
                 attrs={
-                    "class": "input",
+                    'class': 'reg__form-input',
                     "placeholder": "Password",
                 }
                 ),
                 "username" : forms.TextInput(
                     attrs={
+                        'class': 'reg__form-input', 
                         "placeholder": "Username"
                 }
                 ),
                 "phone" : forms.TextInput(
                     attrs={
+                        'class': 'reg__form-input',
                         "placeholder": "Phone"
                 }
                 ),
                 "email" : forms.TextInput(
                     attrs={
+                        'class': 'reg__form-input',
                         "placeholder": "Email"
                 }
                 ),

@@ -9,36 +9,36 @@
                     <h2 class="reg__form-title">Регистрация</h2>
                     <form class="reg__form" action="{% url 'register_user' %}" method="post">
                         {% csrf_token %}
-                            <div class="reg__form-input">
                             {{form.errors}}
-                            {{form.username}}
-                            <label for="">
+                            <div class="reg__form-div">
+                            <label class="reg__form-lable" for="">
                             {{form.username.label}}
                             </label>
+                            {{form.username}}
                             </div>
-                            <div class="reg__form-input">
-                            {{form.phone}}
-                            <label for="">
+                            <div class="reg__form-div">
+                            <label class="reg__form-lable" for="">
                             {{form.phone.label}}
                             </label>
+                            {{form.phone}}
                             </div>
-                            <div class="reg__form-input">
-                            {{form.email}}
-                            <label for="">
+                            <div class="reg__form-div">
+                            <label class="reg__form-lable" for="">
                             {{form.email.label}}
                             </label>
+                            {{form.email}}
                             </div>
-                            <div class="reg__form-input">
-                            {{form.password1}}
-                            <label for="">
+                            <div class="reg__form-div">
+                            <label class="reg__form-lable" for="">
                             {{form.password1.label}}
                             </label>
+                            {{form.password1}}
                             </div>
-                            <div class="reg__form-input">
-                            {{form.password2}}
-                            <label for="">
+                            <div class="reg__form-div">
+                            <label class="reg__form-lable" for="">
                             {{form.password2.label}}
                             </label>
+                            {{form.password2}}
                             </div>
                         <input class="reg__form-but" type="submit" value="Login">
                     </form>

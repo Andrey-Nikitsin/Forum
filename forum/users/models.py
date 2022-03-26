@@ -13,13 +13,13 @@ class User(AbstractUser):
         # unique_together = ("username",)
 
     def __str__(self):
-        return self.username + " | " + self.phone
+        return self.username + '|'  + self.phone
 
 
-@receiver(pre_save, sender=User)
-def hash_passwd(sender, instance, **kwargs):
-    if (instance.id is None) or (
-        sender.objects.get(id=instance.id).password != instance.password
-    ):
-        instance.set_password(instance.password)
+# @receiver(pre_save, sender=User)
+# def hash_passwd(sender, instance, **kwargs):
+#     if (instance.id is None) or (
+#         sender.objects.get(id=instance.id).password != instance.password
+#     ):
+#         instance.set_password(instance.password)
 
