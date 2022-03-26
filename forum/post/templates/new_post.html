@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% load static %}
+{% block post %}
+<body>
+    <div class="unput-window">
+        <div class="container">
+            <form class="create-post" method="post" action="{% url 'new_post' %}" enctype="multipart/form-data">
+            {% csrf_token %}
+                <div class="form__div">
+                <label class="cteate-post__label title1" for="topic">Title</label>
+                {{form.title}}
+                </div>
+                <div>
+                <label class="cteate-post__label title2" for="teg">Choose a tag</label>
+                {{form.tags}}
+                </div>
+                <div>
+                <label class="cteate-post__label title2" for="discription">Category</label>
+                {{form.category}}
+                </div>
+                <div>
+                <label class="cteate-post__label title2" for="file"></label>
+                {{form.text}}
+                </div>
+                <div>
+                <label class="cteate-post__label title2" for="file"></label>
+                {{form.image}}
+                </div>
+                <div>
+                <label class="cteate-post__label title2" for="file">ссылка</label>
+                {{form.slug}}
+                </div>
+                <input class="reg__form-but" type="submit" value="Create">
+            </form>
+        </div>
+    </div>
+</body>
+{% comment %} <form method="post" action="{% url 'new_post' %}" enctype="multipart/form-data">
+    {% csrf_token %}
+    {% for field in form %}
+        {% if field.name != 'author' %}
+        {{field}}
+        {% endif %}
+    {% endfor %}
+    <input type="submit" value="Create" />
+</form> {% endcomment %}
+{% endblock post  %}

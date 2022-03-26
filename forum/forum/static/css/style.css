@@ -21,6 +21,7 @@ body {
     font-family: Raleway, Arial, Helvetica, sans-serif;
     font-size: 18px;
     color: var(--main-text-color);
+    line-height: 20px;
 }
 
 .header {
@@ -181,4 +182,61 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+.title1 {
+    font-family: Raleway, Arial, Helvetica, sans-serif;
+    font-size: 18px;
+    line-height: 20px;
+    font-weight: 900;
+}
+
+h2, h3, h4, h5, h6, .title2, .title3, .title4, .title5, .title6 {
+    font-family: Raleway, Arial, Helvetica, sans-serif;
+    font-size: 18px;
+    line-height: 20px;
+    font-weight: 400;
+}
+
+.unput-window {
+    flex-grow: 1;
+    background-color: var(--background-color);
+    padding: 20px 30% 40px;
+}
+
+.create-post {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    padding: 20px 50px;
+    background-color: var(--main-color);
+    border-radius: 10px;
+}
+
+[class*="input"] {
+    display: block;
+    margin-bottom: 10px;
+    font-size: 18px;
+    line-height: 20px;
+    border-radius: 5px;
+    /* width: 100%; */
+}
+
+.cteate-post__label {
+    margin-bottom: 5px;
+}
+
+.cteate-post__select {
+    display: block;
+    padding: 7px 30px;
+    font-family: Raleway, Arial, Helvetica, sans-serif;
+    font-size: 18px;
+    line-height: 20px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.cteate-post__input-file {
+    display: block;
+    background-color: var(--button-color);
+    color: var(--button-text-color);
 }

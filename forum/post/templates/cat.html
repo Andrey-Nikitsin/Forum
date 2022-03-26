@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block post %}
+{% for f in view.category  %}
+{{f}}
+{% for u in page_obj %}
+{{u.category}}
+{% if f in u.category %}
+    <h2><a href="">{{u.category}}</a></h2>
+{% endif %}
+{% endfor %}
+{% endfor %}
+
+
+
+{% endblock post %}

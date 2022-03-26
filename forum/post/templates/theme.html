@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block post %}
+
+{% for cat in page_obj %}
+    <h2><a href=''>{{post.cat}}</a></h2>
+
+{% endfor %}
+
+{% endblock post %}
