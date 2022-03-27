@@ -1,20 +1,28 @@
 {% extends "base.html" %}
 {% block post %}
 
-{% for post in page_obj %}
-    <h2><a href="{% url 'single_post' post.slug %}">{{post.title}}</a></h2>
-    <p>{% if post.author.first_name %}
-     {{post.author.first_name}} {{post.author.last_name}}{% else %} {{post.author.username}} {% endif %}</p>
-    <img src="{{post.image.url}}" />
-    <ul>
-    {% for t in post.tags.all %}
-        <li><a href="">{{t.value}}</a></li>
-    {% endfor %}
-    </ul>
-    <p>{{post.created}}</p>
-    <p>{{post.views}}</p>
-    <p>{{post.text|truncatechars:30}}</p>
 
-{% endfor %}
+<div class="all-records">
+    {% for post in page_obj %}
+    <div class="record">
+        <h2 class="record__title"><a class="record__link" href="{% url 'single_post' post.slug %}">{{post.title}}</a></h2>
+        <p class="record__text">{% if post.author.first_name %}
+         {{post.author.first_name}} {{post.author.last_name}}{% else %} {{post.author.username}} {% endif %}</p>
+        {% if post.image %}
+        <img class="record__img" src="{{post.image.url}}" />
+        {% endif %}
+        <ul>
+        {% for t in post.tags.all %}
+        <li class="record__value"><a class="record__link" href="">{{t.value}}</a></li>
+        {% endfor %}
+        </ul class="record__post">
+        <p class="record__text">{{post.created}}</p>
+        <p class="record__text">{{post.views}}</p>
+        <p class="record__discription">{{post.text|truncatechars:150}}</p>
+        <hr class="record__line">
+    </div>
+        {% endfor %}
+</div>
+
 
 {% endblock post %}

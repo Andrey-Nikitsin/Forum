@@ -1,15 +1,25 @@
 {% extends "base.html" %}
 {% block post %}
-{% for f in view.category  %}
-{{f}}
-{% for u in page_obj %}
-{{u.category}}
-{% if f in u.category %}
-    <h2><a href="">{{u.category}}</a></h2>
-{% endif %}
-{% endfor %}
-{% endfor %}
 
+<body>
+    <section class="main-page">
+        <div class="container">
+            <div class="theme">
+                {% for b in view.get_category %}
+                <div class="theme__name">
+                    <h2 class="title2">{{b}}</h2>
+                    <ul class="list">
+                        {% for a in page_obj  %}
+                        {% if a.category == b %}
+                        <li class="list__item"><a class="list__link" href="">{{a.title}}</a></li>
+                        {% endif %}
+                        {% endfor %}
+                    </ul>
+                </div>
+                {% endfor %}         
+            </div>
+        </div>
+    </section>
 
-
+</body>
 {% endblock post %}

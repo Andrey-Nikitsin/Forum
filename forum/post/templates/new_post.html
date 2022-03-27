@@ -6,8 +6,16 @@
         <div class="container">
             <form class="create-post" method="post" action="{% url 'new_post' %}" enctype="multipart/form-data">
             {% csrf_token %}
+                {% for field in form %}
+                {% if field.name != 'author' %}
                 <div class="form__div">
-                <label class="cteate-post__label title1" for="topic">Title</label>
+                <label class="cteate-post__label title1" for="topic"> {{field.name}}</label>
+                {{field}}
+                </div>
+                {% endif %}
+                {% endfor %}    
+                {% comment %} <div>
+                <label class="cteate-post__label title2" for="teg">Title</label>
                 {{form.title}}
                 </div>
                 <div>
@@ -29,19 +37,11 @@
                 <div>
                 <label class="cteate-post__label title2" for="file">ссылка</label>
                 {{form.slug}}
-                </div>
+                </div> {% endcomment %}
                 <input class="reg__form-but" type="submit" value="Create">
             </form>
         </div>
     </div>
-</body>
-{% comment %} <form method="post" action="{% url 'new_post' %}" enctype="multipart/form-data">
-    {% csrf_token %}
-    {% for field in form %}
-        {% if field.name != 'author' %}
-        {{field}}
-        {% endif %}
-    {% endfor %}
-    <input type="submit" value="Create" />
-</form> {% endcomment %}
+</body> 
+
 {% endblock post  %}

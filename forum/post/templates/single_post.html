@@ -6,7 +6,9 @@
 <h2>{{post.title}}</h2>
     <p>{% if post.author.first_name %}
      {{post.author.first_name}} {{post.author.last_name}}{% else %} {{post.author.username}} {% endif %}</p>
+     {% if post.image %}
     <img src="{{post.image.url}}" />
+    {% endif %}
     <ul>
     {% for t in post.tags.all %}
         <li><a href="">{{t.value}}</a></li>

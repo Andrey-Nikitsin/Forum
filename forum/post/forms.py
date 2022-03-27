@@ -1,4 +1,3 @@
-from ctypes.wintypes import SIZE
 from django import forms
 from post.models import Post
 
@@ -14,11 +13,11 @@ class PostForm(forms.ModelForm):
                 },
                 
             ),
-            "tags": forms.Select(
-                attrs={
-                    'class': 'cteate-post__select'
-                }
-            ),
+            # "tags": forms.Select(
+            #     attrs={
+            #         'class': 'cteate-post__select'
+            #     }
+            # ),
             "category": forms.Select(
                 attrs={
                     'class': 'cteate-post__select'
@@ -44,4 +43,5 @@ class PostForm(forms.ModelForm):
 
     def clean(self):
         print(self.cleaned_data)
+
         return self.cleaned_data

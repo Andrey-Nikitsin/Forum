@@ -1,10 +1,12 @@
 from django.shortcuts import render
-from post.models import Post, Tag, Category
+from post.models import Post, Category
 from django.views.generic import ListView
 from post.forms import PostForm
 from django.shortcuts import redirect
 from django.http import Http404
 from django.views.generic.detail import DetailView
+from django.views.generic import FormView
+from django.urls import reverse
 
 
 class PostsView(ListView):
@@ -18,7 +20,7 @@ class CategoryView(ListView):
     template_name = "cat.html"
 
     @staticmethod
-    def category():
+    def get_category():
         return Category.objects.all()
     
 
@@ -26,6 +28,21 @@ class ThemeView(ListView):
     paginate_by = 5
     model = Post
     template_name = "theme.html"
+
+
+# class new_post(FormView):
+#     form_class = PostForm
+#     template_name = 'new_post.html'
+    
+#     def get_success_url(self) -> str:
+#         next_url = self.request.GET.get("next")
+#         if next_url is not None:
+#             return next_url
+#         return reverse("all_users")
+
+#     def form_valid(self, form):
+#         form.save()
+#         return super().form_valid(form)
 
 def new_post(request):
     context = {"form": PostForm()}
