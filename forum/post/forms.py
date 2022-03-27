@@ -1,5 +1,24 @@
+from pyexpat import model
+from unicodedata import category
 from django import forms
-from post.models import Post
+from post.models import Post, Category
+
+
+class CatForm(forms.ModelForm):
+    class Meta:
+        model = Category
+        exclude = ("Category",)
+        widgets = {
+            "name_category": forms.TextInput(
+                attrs={
+                    'class': 'cteate-post__input'
+                })}
+
+    def clean(self):
+        print(self.cleaned_data)
+
+        return self.cleaned_data
+
 
 
 class PostForm(forms.ModelForm):
@@ -10,14 +29,8 @@ class PostForm(forms.ModelForm):
             "title": forms.TextInput(
                 attrs={
                     'class': 'cteate-post__input'
-                },
-                
+                },                
             ),
-            # "tags": forms.Select(
-            #     attrs={
-            #         'class': 'cteate-post__select'
-            #     }
-            # ),
             "category": forms.Select(
                 attrs={
                     'class': 'cteate-post__select'

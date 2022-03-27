@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from post.models import Post, Category
 from django.views.generic import ListView
-from post.forms import PostForm
+from post.forms import PostForm, CatForm
 from django.shortcuts import redirect
 from django.http import Http404
 from django.views.generic.detail import DetailView
@@ -13,6 +13,22 @@ class PostsView(ListView):
     paginate_by = 5
     model = Post
     template_name = "all_records.html"
+
+
+
+def new_cat(request):
+    context = {"form": CatForm()}
+    if request.method == "POST":
+        copy_post = request.POST.copy()
+        copy_post["author"] = request.user
+        form = CatForm(copy_post, request.FILES)
+        print(form.is_valid)
+        if form.is_valid():
+            form.save()
+            return redirect("all_posts")
+        context.update(form=form)
+    return render(request, "new_cat.html", context)
+
 
 class CategoryView(ListView):
     paginate_by = 5
@@ -80,3 +96,10 @@ def new_post(request):
 class PostDetail(DetailView):
     model = Post
     template_name="single_post.html"
+
+
+    def single_post(self):
+        d = self.kwargs['slug']
+        context = { "post": Post.objects.get(slug=d)}
+        context["post"].views += 1
+        context["post"].save()

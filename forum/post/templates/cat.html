@@ -11,7 +11,7 @@
                     <ul class="list">
                         {% for a in page_obj  %}
                         {% if a.category == b %}
-                        <li class="list__item"><a class="list__link" href="">{{a.title}}</a></li>
+                        <li class="list__item"><a class="list__link" href="{% url 'single_post' a.slug %}">{{a.title}}</a></li>
                         {% endif %}
                         {% endfor %}
                     </ul>
@@ -19,7 +19,11 @@
                 {% endfor %}         
             </div>
         </div>
+        {% if user.is_authenticated %}
+        <a class="main-page__button" href="{% url 'new_cat' %}">Добавить раздел</a> 
+        {% else %}
+        <a class="main-page__button" href="{% url 'user_login' %}">что бы добавить раздел авторизируйтесь</a> 
+        {% endif %}
     </section>
-
 </body>
 {% endblock post %}

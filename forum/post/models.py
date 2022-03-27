@@ -1,5 +1,5 @@
 from typing_extensions import Required
-from unicodedata import category
+
 from django.db import models
 from users.models import User
 from django.db.models.signals import pre_save, pre_delete
@@ -65,6 +65,6 @@ def to_url(sender, instance, **kwargs):
     def ttu(title):
         return title.replace(" ", "_").lower()
 
-    if (instance.id is None) or (instance.url != ttu(instance.title)):
-        instance.url = ttu(instance.title)
-        print(instance.url, "\n\n\n")
+    # if (instance.id is None) or (instance.url != ttu(instance.title)):
+    #     instance.url = ttu(instance.title)
+    #     print(instance.url, "\n\n\n")

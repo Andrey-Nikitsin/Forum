@@ -1,8 +1,5 @@
- {% extends "base.html" %}
-
+{% extends "base.html" %}
 {% block post %}
-
-
 <h2>{{post.title}}</h2>
     <p>{% if post.author.first_name %}
      {{post.author.first_name}} {{post.author.last_name}}{% else %} {{post.author.username}} {% endif %}</p>
@@ -15,9 +12,6 @@
     {% endfor %}
     </ul>
     <p>{{post.created}}</p>
-    <p>{{post.views}}</p>
+    <p>{{post.views}} {{view.single_post}}</p>
     <p>{{post.text}}</p>
-    {% if back %}
-    <a href="{{back}}">Back</a>
-    {% endif %}
 {% endblock post %}

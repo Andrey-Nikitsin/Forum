@@ -270,6 +270,22 @@ h3, h4, h5, h6,
     padding: 20px 70px;
 }
 
+.main-page__button {
+    display: block;
+    text-decoration: none;
+    text-align: center;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    width: 20%;
+    border-radius: 10px;
+    background-color: var(--button-color);
+    color: var(--button-text-color);
+    border: none;
+    font-family: Raleway, Arial, Helvetica, sans-serif;
+    font-size: 18px;
+    font-weight: 900;
+}
+
 .theme {
     display: flex;
     justify-content: space-between;
@@ -331,7 +347,7 @@ h3, h4, h5, h6,
 }
 
 .record__img {
-    width: 50%;
+    width: 30%;
     align-self: center;
 }
 
