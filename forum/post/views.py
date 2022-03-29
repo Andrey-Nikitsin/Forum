@@ -10,6 +10,7 @@ from django.shortcuts import redirect
 from django.views.generic.detail import DetailView
 from django.views.generic import FormView, CreateView
 from django.urls import reverse
+from functools import wraps
 
 
 
@@ -93,31 +94,37 @@ def new_post(request):
 #     # print(request.META)
 
 #     return render(request, "single_post.html", context)
+   
 
-
-class PostDetail(DetailView, CreateView):
-
+class PostDetail(DetailView, FormView):
+   
     model = Post
     form_class = CommitForm
     template_name= "single_post.html"
-    success_url= f'/../posts/all/'
+    success_url= '/../posts/../'
     
+    
+
     @staticmethod
     def get_comment():
         return Comment.objects.all()
     
-
     def single_post(self):
         d = self.kwargs['slug']
         context = { "post": Post.objects.get(slug=d)}
-        a= context['post'].slug
         context["post"].views += 1
         context["post"].save()
-        return 
+        return None
     
+    def get_url(self):
+        return self.url
+
 
 
     def form_valid(self, form):
+        global post_url
+        post_url = self.kwargs['slug']
+
         form.instance.author= self.request.user
         a=Post.objects.filter(slug=self.kwargs['slug'])
         for elem in a:

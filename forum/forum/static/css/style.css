@@ -1,10 +1,8 @@
 :root {
-    --main-color: rgb(35, 33, 111);
-    --main-text-color: rgb(237, 237, 240);
+    --main-color: rgb(150, 195, 161);
+    --contetn-background: rgb(217, 236, 222);
+    --main-text-color: rgb(0, 39, 12);
     --button-color: rgb(255, 255, 255);
-    --button-text-color: rgb(35, 33, 111);
-    --background-color:rgb(197, 200, 221);
-    --main-page-text-color:rgb(35, 33, 111);
 }
 
 * {
@@ -42,6 +40,12 @@ h3, h4, h5, h6,
     font-size: 18px;
     line-height: 20px;
     font-weight: 400;
+}
+
+.line {
+    width: 300px;
+    border: none;
+    border-bottom: 2px solid var(--main-color);
 }
 
 .wrapper {
@@ -105,8 +109,8 @@ h3, h4, h5, h6,
 
 /* REG */
 .content {
-    background-image: linear-gradient(rgba(200, 199, 209, 0.4), rgba(200, 199, 209, 0.4)),
-    url(../image/dark__blue.jpg);
+    /* background-image: linear-gradient(rgba(200, 199, 209, 0.4), rgba(200, 199, 209, 0.4)),
+    url(../image/dark__blue.jpg); */
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
@@ -118,7 +122,8 @@ h3, h4, h5, h6,
 }
 
 .reg__form-box {
-    margin: 20px 30%;
+    margin: 20px 200px;
+    padding: 0 30px 30px;
     border-radius: 10px;
     background-color: var(--main-color);
 }
@@ -142,7 +147,11 @@ h3, h4, h5, h6,
     justify-content: space-between;
     margin: 0 auto;
     width: 100%;
-    padding: 3px 50px;
+    padding: 5px 50px;
+}
+
+.reg__form-div:last-child {
+    padding-bottom: 20px;
 }
 
 .reg__form-lable {
@@ -174,16 +183,14 @@ h3, h4, h5, h6,
 .reg__form-input:focus {
     background-color: var(--main-color);
     outline: none;
-    color: rgb(248, 244, 7);
     font-size: 18px;
     line-height: 20px;
 }
 
 .reg__form-but {
     width: 100%;
-    border-radius: 10px;
     background-color: var(--button-color);
-    color: var(--button-text-color);
+    color: var(--maim-text-color);
     border: none;
     font-family: Raleway, Arial, Helvetica, sans-serif;
     font-size: 18px;
@@ -192,11 +199,11 @@ h3, h4, h5, h6,
 }
 
 .reg__form-but:hover {
-    background-color: rgb(150, 133, 245);
+    background-color: var(--contetn-background);
 }
 
 .reg__form-but:active {
-    background-color: rgb(211, 2, 2);
+    background-color: var(--main-color);
 }
 
 .footer {
@@ -218,8 +225,7 @@ h3, h4, h5, h6,
 
 .unput-window {
     flex-grow: 1;
-    background-color: var(--background-color);
-    padding: 20px 30% 40px;
+    padding: 20px 200px 40px;
 }
 
 .create-post {
@@ -251,18 +257,18 @@ h3, h4, h5, h6,
     line-height: 20px;
     border-radius: 5px;
     margin-bottom: 10px;
+    background-color: var(--button-color);
 }
 
 .cteate-post__input-file {
     display: block;
     background-color: var(--button-color);
-    color: var(--button-text-color);
 }
 
 .main-page {
-    color: var(--main-page-text-color);
-    background-image: linear-gradient(rgb(255, 255, 255, 0.7), rgb(255, 255, 255, 0.7)),
-    url(../image/dark__blue.jpg);
+    color: var(--main-text-color);
+    /* background-image: linear-gradient(rgb(255, 255, 255, 0.7), rgb(255, 255, 255, 0.7)),
+    url(../image/dark__blue.jpg); */
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
@@ -277,9 +283,8 @@ h3, h4, h5, h6,
     padding-top: 10px;
     padding-bottom: 10px;
     width: 20%;
-    border-radius: 10px;
-    background-color: var(--button-color);
-    color: var(--button-text-color);
+    background-color: var(--main-color);
+    color: var(--main-text-color);
     border: none;
     font-family: Raleway, Arial, Helvetica, sans-serif;
     font-size: 18px;
@@ -292,6 +297,7 @@ h3, h4, h5, h6,
     flex-wrap: wrap;
     margin-left: -15px;
     margin-right: -15px;
+    background-color: var(--contetn-background);
 }
 
 .theme__name {
@@ -304,18 +310,21 @@ h3, h4, h5, h6,
 }
 
 .list__link {
-    text-decoration: none;
+    /* text-decoration: none; */
+    color: var(--main-text-color);
+    
 }
 
 .all-records {
-    color: var(--main-page-text-color);
-    background-image: linear-gradient(rgb(255, 255, 255, 0.7), rgb(255, 255, 255, 0.7)),
-    url(../image/dark__blue.jpg);
+    /* color: var(--main-page-text-color); */
+    /* background-image: linear-gradient(rgb(255, 255, 255, 0.7), rgb(255, 255, 255, 0.7)),
+    url(../image/dark__blue.jpg); */
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
     padding: 20px 70px;
     flex-grow: 1;
+    color: var(--main-text-color);
 }
 
 .record {
@@ -332,7 +341,12 @@ h3, h4, h5, h6,
 }
 
 .record__link {
-    text-decoration: none;
+    color: var(--main-text-color);
+}
+
+.record__link:visited,
+.list__link {
+    color: rgb(60, 149, 33);
 }
 
 .record__text {
@@ -353,11 +367,41 @@ h3, h4, h5, h6,
 
 .record__line {
     margin-top: 20px;
-    width: 300px;
-    border: none;
-    border-bottom: 2px solid var(--main-color);
 }
 
 [class*="record__"]:last-child {
     margin-bottom: 0;
+}
+
+.comments {
+    padding: 20px 100px; 
+    background-color: var(--contetn-background);  
+}
+
+.comments__view {
+    display: none;
+}
+
+.comment-line {
+    margin-left: 0;
+}
+
+.comment-form {
+    display: flex;
+    flex-direction: column;
+    padding-top: 20px;
+    width: 50%;
+
+}
+
+.comment-form__but {
+    margin: 15px 0;
+    padding: 15px 30px;
+    align-self: start;
+    background-color: var(--button-color);
+    border: none;
+}
+
+img {
+    width: 30%;
 }

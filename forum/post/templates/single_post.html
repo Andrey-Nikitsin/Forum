@@ -1,34 +1,41 @@
 {% extends "base.html" %}
 {% block post %}
-<h2>{{post.title}}</h2>
-    <p>{% if post.author.first_name %}
+<div class="record">
+<h2 class="record__title">{{post.title}}</h2>
+    <p> Автор: {% if post.author.first_name %}
      {{post.author.first_name}} {{post.author.last_name}}{% else %} {{post.author.username}} {% endif %}</p>
-     {% if post.image %}
+    {% if post.image %}
     <img src="{{post.image.url}}" />
     {% endif %}
     <ul>
     {% for t in post.tags.all %}
-        <li><a href="">{{t.value}}</a></li>
+    <li><a href="">{{t.value}}</a></li>
     {% endfor %}
     </ul>
     <p>{{post.created}}</p>
-    <p>{{post.views}} {{view.single_post}}</p>
+    <p> Количество Просмотров: {{post.views}} <span class="comments__view">{{view.single_post}}</span></p>
     <p>{{post.text}}</p>
-    <p>{{post.id}}</p>
-    {% for comment in view.get_comment %}
-    {% if comment.post_name == post %}
-    <p>{{comment.author}}</p>
-    <p>{{comment}}</p>
-    <p>{{comment.created}}</p>
-    {% else %}
-    {% endif %}
-    {% endfor %}
-    
+</div> 
+
+<div class="comments">  
+    <h2>Комментарии</h2>
+    <div>   
+        {% for comment in view.get_comment %}
+        {% if comment.post_name == post %}
+    <p> Автор: {{comment.author}}</p>
+    <p> Комментарий: {{comment}}</p>
+    <p> Дата: {{comment.created}}</p>
+    <hr class="line comment-line">
+        {% else %}
+        {% endif %}
+        {% endfor %}
+    </div>
     {% if user.is_authenticated %}
-    <form class="create-post" method="post" action="{% url 'single_post' post.slug %}"  enctype="multipart/form-data">
+    <form class="comment-form" method="post" action="{% url 'single_post' post.slug %}"  enctype="multipart/form-data">
             {% csrf_token %}
                 {{form.commit}}
-                <input class="reg__form-but" type="submit" value="Create">
+                <input class="comment-form__but" type="submit" value="Create">
             </form>
-    {% endif %}
-{% endblock post %}
+        {% endif %}
+    {% endblock post %}
+</div>
