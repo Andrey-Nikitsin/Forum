@@ -28,20 +28,20 @@ class Post(models.Model):
         path_file = datetime.strftime(datetime.now(), "post/%Y/%m/%d/%H/")
         return path_file + str(randint(100000000, 999999999)) + "." + file_type
 
-    title = models.CharField(max_length=256, unique=True, verbose_name="Post title")
+    title = models.CharField(max_length=256, unique=True, verbose_name="Заголовок")
     author = models.ForeignKey(
         User,
         related_name="posts",
         on_delete=models.CASCADE,
         verbose_name="Post author",
     )
-    category = models.ForeignKey(Category, on_delete=models.CASCADE, verbose_name="category")
-    text = models.TextField(verbose_name="Post data")
+    category = models.ForeignKey(Category, on_delete=models.CASCADE, verbose_name="Категория")
+    text = models.TextField(verbose_name="Текст поста")
     created = models.DateTimeField(auto_now_add=True, verbose_name="Post created")
     updated = models.DateTimeField(auto_now=True, verbose_name="Post update")
     is_moderated = models.BooleanField(default=False)
     views = models.BigIntegerField(default=0)
-    image = models.ImageField(blank=True, upload_to=file_path)
+    image = models.ImageField(blank=True, upload_to=file_path, verbose_name="Изображение")
     slug = models.SlugField(max_length=256, unique=True, verbose_name="Link to Post")
 
     def __str__(self) -> str:

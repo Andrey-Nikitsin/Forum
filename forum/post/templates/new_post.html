@@ -9,7 +9,7 @@
                 {% for field in form %}
                 {% if field.name != 'author' %}
                 <div class="form__div">
-                <label class="cteate-post__label title1" for="topic"> {{field.name}}</label>
+                <label class="cteate-post__label title1" for="topic"> {{field.label}}</label>
                 {{field}}
                 </div>
                 {% endif %}
