@@ -1,7 +1,7 @@
 from pyexpat import model
 from unicodedata import category
 from django import forms
-from post.models import Post, Category
+from post.models import Post, Category, Comment, User
 
 
 class CatForm(forms.ModelForm):
@@ -56,5 +56,23 @@ class PostForm(forms.ModelForm):
 
     def clean(self):
         print(self.cleaned_data)
+
+        return self.cleaned_data
+
+
+
+class CommitForm(forms.ModelForm):
+    class Meta:
+        model = Comment
+        exclude = ('id',)
+        widgets = {
+            "Commit": forms.TextInput(
+                attrs={
+                    'class': 'cteate-post__input'
+                }                
+            )}
+
+    def clean(self):
+        self.cleaned_data['author']= User.objects.get(id=2)
 
         return self.cleaned_data

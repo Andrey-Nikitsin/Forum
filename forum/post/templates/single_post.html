@@ -14,4 +14,13 @@
     <p>{{post.created}}</p>
     <p>{{post.views}} {{view.single_post}}</p>
     <p>{{post.text}}</p>
+    {% if user.is_authenticated %}
+    <form class="create-post" method="post" action="{% url 'single_post' post.slug %}"  enctype="multipart/form-data">
+            {% csrf_token %}
+                {% for field in form %}
+                {{field}}
+                {% endfor %}
+                <input class="reg__form-but" type="submit" value="Create">
+            </form>
+    {% endif %}
 {% endblock post %}

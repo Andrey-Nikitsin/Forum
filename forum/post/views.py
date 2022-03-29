@@ -1,12 +1,14 @@
+from abc import abstractmethod
+from urllib import request
 from django.shortcuts import render
-from post.models import Post, Category
+from post.models import Post, Category, Comment
 from django.views.generic import ListView
-from post.forms import PostForm, CatForm
+from post.forms import PostForm, CatForm, CommitForm
 from django.shortcuts import redirect
-from django.http import Http404
 from django.views.generic.detail import DetailView
 from django.views.generic import FormView
 from django.urls import reverse
+
 
 
 class PostsView(ListView):
@@ -22,7 +24,6 @@ def new_cat(request):
         copy_post = request.POST.copy()
         copy_post["author"] = request.user
         form = CatForm(copy_post, request.FILES)
-        print(form.is_valid)
         if form.is_valid():
             form.save()
             return redirect("all_posts")
@@ -93,13 +94,25 @@ def new_post(request):
 #     return render(request, "single_post.html", context)
 
 
-class PostDetail(DetailView):
+class PostDetail(DetailView, FormView):
     model = Post
-    template_name="single_post.html"
+    form_class = CommitForm
+    template_name= "single_post.html"
+    success_url= f'/../posts/all/'
+    
+
 
 
     def single_post(self):
         d = self.kwargs['slug']
         context = { "post": Post.objects.get(slug=d)}
+        a= context['post'].slug
         context["post"].views += 1
         context["post"].save()
+        return 
+
+
+    def form_valid(self, form):
+        print(self.kwargs)
+        form.save()
+        return super().form_valid(form)   

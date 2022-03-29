@@ -8,6 +8,7 @@ from random import randint
 from datetime import datetime
 from django.conf import settings
 import os
+from django.urls import reverse
 
 
 class Category(models.Model):
@@ -50,6 +51,19 @@ class Post(models.Model):
         verbose_name = "Post"
         ordering=("-id",)
 
+
+class Comment(models.Model):
+    commit = models.TextField(max_length=70)
+    post_name = models.ForeignKey(Post, on_delete=models.CASCADE, verbose_name="name_post")
+    author = models.ForeignKey(User, related_name="name_author", on_delete=models.CASCADE, verbose_name="comit_author")
+
+    def __str__(self) -> str:
+        return self.commit
+
+    class Meta:
+        db_table = "Commit"
+        verbose_name = "Commit"
+    
 
 @receiver(pre_delete, sender=Post)
 def hash_passwd(sender, instance, **kwargs):
