@@ -34,7 +34,7 @@
                 </div>
             </div>
             <nav class="header__nav">
-                <ul class="header__nav-link">
+                <ul class="header__nav-list">
                     <li class="header__nav-item"><a class="header__nav-link" href="/../posts/all/">Все посты</a></li>
                     <li class="header__nav-item"><a class="header__nav-link" href="/../posts/cat/">Категории</a></li>
                     <li class="header__nav-item"><a class="header__nav-link" href="">Menu item</a></li>
@@ -44,10 +44,7 @@
             </nav>
         </div>
     </header>
-    {% comment %} {% block header %}
-    {% include "blocks/header.html" %}
-    {% endblock header %} {% endcomment %}
-
+    
     <div class="content">
         {% block user %}{% endblock user %}
         {% block post %}{% endblock post %}

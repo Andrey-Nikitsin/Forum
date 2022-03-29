@@ -21,8 +21,10 @@
         </div>
         {% if user.is_authenticated %}
         <a class="main-page__button" href="{% url 'new_cat' %}">Добавить раздел</a> 
+        <p></p>
+        <a class="main-page__button" href="{% url 'new_post' %}">Добавить пост</a> 
         {% else %}
-        <a class="main-page__button" href="{% url 'user_login' %}">что бы добавить раздел авторизируйтесь</a> 
+        <a class="main-page__button" href="{% url 'user_login' %}">что бы добавить категорию, авторизируйтесь</a> 
         {% endif %}
     </section>
 </body>

@@ -48,4 +48,4 @@ def login(request):
 
 def logout(request):
     log_out(request)
-    return redirect("all_users")
+    return redirect("all_theme")

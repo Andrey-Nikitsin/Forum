@@ -101,9 +101,11 @@ class PostDetail(DetailView, FormView):
     model = Post
     form_class = CommitForm
     template_name= "single_post.html"
-    success_url= '/../posts/../'
     
     
+    def get_success_url(self):
+        url = self.kwargs['slug']
+        return f'/../posts/{url}/'
 
     @staticmethod
     def get_comment():
