@@ -17,8 +17,9 @@
     <p>{{post.id}}</p>
     {% for comment in view.get_comment %}
     {% if comment.post_name == post %}
-    <p>{{comment}}</p>
     <p>{{comment.author}}</p>
+    <p>{{comment}}</p>
+    <p>{{comment.created}}</p>
     {% else %}
     {% endif %}
     {% endfor %}
