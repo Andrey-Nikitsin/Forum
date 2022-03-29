@@ -2,6 +2,7 @@ from pyexpat import model
 from unicodedata import category
 from django import forms
 from post.models import Post, Category, Comment, User
+from urllib import request
 
 
 class CatForm(forms.ModelForm):
@@ -73,6 +74,5 @@ class CommitForm(forms.ModelForm):
             )}
 
     def clean(self):
-        self.cleaned_data['author']= User.objects.get(id=2)
-
+        print(self.cleaned_data)
         return self.cleaned_data

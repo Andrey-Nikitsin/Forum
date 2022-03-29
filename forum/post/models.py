@@ -1,3 +1,4 @@
+from email.policy import default
 from typing_extensions import Required
 
 from django.db import models
@@ -44,18 +45,21 @@ class Post(models.Model):
     slug = models.SlugField(max_length=256, unique=True, verbose_name="Link to Post")
 
     def __str__(self) -> str:
-        return (self.title[:20] + "...") if len(self.title) > 20 else self.title
+        return self.slug
+        # return (self.title[:20] + "...") if len(self.title) > 20 else self.title
 
     class Meta:
         db_table = "posts"
         verbose_name = "Post"
         ordering=("-id",)
+    
 
 
 class Comment(models.Model):
     commit = models.TextField(max_length=70)
-    post_name = models.ForeignKey(Post, on_delete=models.CASCADE, verbose_name="name_post")
-    author = models.ForeignKey(User, related_name="name_author", on_delete=models.CASCADE, verbose_name="comit_author")
+    post_name = models.ForeignKey(Post, blank=True, on_delete=models.CASCADE, verbose_name="name_post")
+    author = models.ForeignKey(User, blank=True, related_name="name_author", on_delete=models.CASCADE, verbose_name="comit_author")
+    created = models.DateTimeField(auto_now_add=True, verbose_name="comment_created")
 
     def __str__(self) -> str:
         return self.commit
@@ -64,7 +68,7 @@ class Comment(models.Model):
         db_table = "Commit"
         verbose_name = "Commit"
     
-
+    
 @receiver(pre_delete, sender=Post)
 def hash_passwd(sender, instance, **kwargs):
     path_to_file = settings.BASE_DIR / str(instance.image.path)

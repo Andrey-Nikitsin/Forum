@@ -13,7 +13,7 @@ class User(AbstractUser):
         # unique_together = ("username",)
 
     def __str__(self):
-        return self.username + '|'  + self.phone
+        return self.username
 
 
 # @receiver(pre_save, sender=User)
