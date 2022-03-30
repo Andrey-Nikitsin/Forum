@@ -5,7 +5,7 @@ from users.forms import LoginForm, RegisterForm
 from django.shortcuts import render, HttpResponse
 from django.views.generic import ListView, FormView
 from django.urls import reverse
-from django.contrib.auth import logout as log_out
+from django.contrib.auth import logout, login
 from django.contrib.auth.decorators import login_required
 
 
@@ -19,20 +19,21 @@ class UsersView(ListView):
 class RegisterView(FormView):
     template_name = "register.html"
     form_class = RegisterForm
-    # success_url = "/post/"
+    success_url = "/posts/all/"
 
-    def get_success_url(self) -> str:
-        next_url = self.request.GET.get("next")
-        if next_url is not None:
-            return next_url
-        return reverse("all_users")
+    # def get_success_url(self) -> str:
+    #     next_url = self.request.GET.get("next")
+    #     if next_url is not None:
+    #         return next_url
+    #     return reverse("all_users")
 
     def form_valid(self, form):
-        form.save()
+        user = form.save()
+        login(self.request, user)
         return super().form_valid(form)
 
 
-def login(request):
+def login_user(request):
     if request.user.is_authenticated:
         return redirect("all_users")
     context = {"login_form": LoginForm()}
@@ -46,6 +47,6 @@ def login(request):
 
 
 
-def logout(request):
-    log_out(request)
+def log_out(request):
+    logout(request)
     return redirect("all_theme")
